@@ -38,7 +38,7 @@ public class Assignment19 {
 
 		System.out.println("*******5th Example******");
 		for (int i = 0; i < d.length; i++)
-			// use nomal for loop to print the array d
+			// use normal for loop to print the array d
 			System.out.println(d[i]);
 
 	}
