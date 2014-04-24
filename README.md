@@ -17,7 +17,7 @@
 
  Title | Length
 --- | ---
-I. AP Computer Science |
+###I. AP Computer Science |
 About the AP Computer Science Exam | 17:11    
 Types, Variables, & Arithmetic Operators | 23:20
 Equality, Relational, & Logical Operators | 22:34
@@ -36,7 +36,7 @@ Algorithms: Sorting | 29:42
 Algorithms: Searching | 32:37
 Program Design & Development | 29:29
 Standard Classes & Interfaces | 32:53
-II. AP Test Preparation | 
+###II. AP Test Preparation | 
 Multiple Choice Question Tips & Practice | 55:47
 Free Response Question Tips & Practice | 40:55
 The GridWorld Study | 54:18
