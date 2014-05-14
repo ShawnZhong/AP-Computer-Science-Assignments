@@ -1,9 +1,9 @@
-package square;
+package snake;
 
 import java.awt.Graphics;
 import util.MyFrame;
 
-public class Square extends MyFrame {
+public class GameFrame extends MyFrame {
 	double k = 2;
 	int number = 1000;
 
@@ -13,7 +13,7 @@ public class Square extends MyFrame {
 	}
 
 	public static void main(String[] args) {
-		new Square().launchFrame();
+		new GameFrame().launchFrame();
 	}
 
 	public void launchFrame() {

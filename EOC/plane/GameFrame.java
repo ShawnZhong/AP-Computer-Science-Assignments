@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import util.MyFrame;
 
-public class PlaneGameFrame extends MyFrame {
+public class GameFrame extends MyFrame {
 	final int BULLET_NUMBER = 50;
 
 	Plane p = new Plane(getImage("plane/plane.png"), 50, 50, 10);
@@ -41,7 +41,7 @@ public class PlaneGameFrame extends MyFrame {
 	}
 
 	public static void main(String[] args) {
-		new PlaneGameFrame().launchFrame();
+		new GameFrame().launchFrame();
 	}
 
 	public void launchFrame() {
@@ -66,7 +66,7 @@ public class PlaneGameFrame extends MyFrame {
 
 	public static Image getImage(String path) {
 		try {
-			return javax.imageio.ImageIO.read(PlaneGameFrame.class.getClassLoader().getResource(path));
+			return javax.imageio.ImageIO.read(GameFrame.class.getClassLoader().getResource(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
