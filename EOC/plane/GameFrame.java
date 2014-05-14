@@ -11,6 +11,7 @@ import util.MyFrame;
 
 public class GameFrame extends MyFrame {
 	final int BULLET_NUMBER = 50;
+	boolean alive = true;
 
 	Plane p = new Plane(FrameUtil.getImage("plane/plane.png"), 50, 50, 10);
 	ArrayList<Bullet> bulletList = new ArrayList<Bullet>(BULLET_NUMBER);
@@ -18,15 +19,15 @@ public class GameFrame extends MyFrame {
 
 	public void paint(Graphics g) {
 		g.drawImage(FrameUtil.getImage("plane/bg.jpg"), 0, 0, null);
-		if (p.isLive())
+		if (alive)
 			p.draw(g);
 		else
 			FrameUtil.printInfo(g, "Time : " + period + "s", 20, height / 2 - 50, width / 2, Color.white);
 
 		for (Bullet b : bulletList) {
 			b.draw(g);
-			if (b.getRect().intersects(p.getRect()) && p.isLive()) {
-				p.setLive(false);
+			if (b.getRect().intersects(p.getRect()) && alive) {
+				alive = false;
 				period = (new Date().getTime() - start) / 1000;
 			}
 		}

@@ -13,7 +13,6 @@ public class Plane {
 	private double x, y;
 	private int width, height, speed;
 	private boolean left, up, right, down;
-	private boolean live = true;
 
 	public Plane(Image img, int x, int y, int speed) {
 		this.img = img;
@@ -78,15 +77,8 @@ public class Plane {
 		}
 	}
 
-	public boolean isLive() {
-		return live;
-	}
-
 	public Rectangle getRect() {
 		return rect;
 	}
 
-	public void setLive(boolean live) {
-		this.live = live;
-	}
 }
