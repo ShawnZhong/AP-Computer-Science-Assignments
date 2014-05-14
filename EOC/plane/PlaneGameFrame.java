@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PlaneGameFrame extends MyFrame {
-	final int BULLET_NUMBER = 35;
+	final int BULLET_NUMBER = 20;
 
-	Plane p = new Plane(getImage("images/plane.png"), 50, 50, 10);
+	Plane p = new Plane(getImage("plane/plane.png"), 50, 50, 10);
 	ArrayList<Bullet> bulletList = new ArrayList<Bullet>(BULLET_NUMBER);
 	long start, period;
 
 	public void paint(Graphics g) {
-		g.drawImage(getImage("images/bg.jpg"), 0, 0, null);
+		g.drawImage(getImage("plane/bg.jpg"), 0, 0, null);
 		if (p.isLive())
 			p.draw(g);
 		else

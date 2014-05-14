@@ -8,31 +8,27 @@ import java.awt.event.KeyEvent;
 
 public class Plane {
 	private Image img;
+	private Rectangle rect;
 	private double x, y;
 	private int width, height, speed;
-
 	private boolean left, up, right, down;
 	private boolean live = true;
 
 	public Plane(Image img, int x, int y, int speed) {
-		this.speed = speed;
 		this.img = img;
-		this.width = img.getWidth(null);
-		this.height = img.getHeight(null);
 		this.x = x;
 		this.y = y;
-
+		this.speed = speed;
+		this.width = img.getWidth(null);
+		this.height = img.getHeight(null);
+		this.rect = new Rectangle((int) x + height / 3, (int) y + width / 3, width / 3, height / 3);
 	}
 
 	public void draw(Graphics g) {
 		g.drawImage(img, (int) x, (int) y, null);
 		g.setColor(Color.red);
-		g.drawRect((int) x + height / 3, (int) y + width / 3, width / 3, height / 3);
+		g.drawRect(rect.x, rect.y, rect.width, rect.height);
 		move();
-	}
-
-	public Rectangle getRect() {
-		return new Rectangle((int) x + height / 3, (int) y + width / 3, width / 3, height / 3);
 	}
 
 	public void move() {
@@ -44,6 +40,7 @@ public class Plane {
 			y -= speed;
 		if (down && y < MyFrame.GAME_WIDTH - width)
 			y += speed;
+		rect = new Rectangle((int) x + height / 3, (int) y + width / 3, width / 3, height / 3);
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -82,6 +79,10 @@ public class Plane {
 
 	public boolean isLive() {
 		return live;
+	}
+
+	public Rectangle getRect() {
+		return rect;
 	}
 
 	public void setLive(boolean live) {

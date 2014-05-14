@@ -25,7 +25,7 @@ public class Bullet {
 		y += speed * Math.sin(degree);
 
 		if (y > MyFrame.GAME_HEIGHT - height || y < 30)
-			degree = -degree;
+			degree = Math.PI * 2 - degree;
 		if (x < 0 || x > MyFrame.GAME_WIDTH - width)
 			degree = Math.PI - degree;
 	}
