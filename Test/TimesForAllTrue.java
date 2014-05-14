@@ -1,8 +1,7 @@
 
-
 public class TimesForAllTrue {
 	public static void main(String[] args) {
-		for (int i = 100; i <= 100; i++) {
+		for (int i = 1024; i <= 1024; i++) {
 			double times = timesForAllTrueAverage(i);
 			System.out.println(i + "\t" + times + "\t" + times / i);
 		}

@@ -1,11 +1,10 @@
-
-
+package assignment23;
 public class Sort {
 	static int[] array = { 1, 2, 4, 5, 6, 7, 3, 2, 3, 5, 7, 1 };
 
 	public static void main(String[] args) {
 		// selectionSort();
-		// bubbleSort();
+		bubbleSort();
 	}
 
 	public static void selectionSort() {
@@ -41,13 +40,24 @@ public class Sort {
 		int temp = array[a];
 		array[a] = array[b];
 		array[b] = temp;
-		print();
+		print(a);
 		return array;
 	}
 
 	private static void print() {
 		for (int i : array)
 			System.out.print(i + " ");
+		System.out.println();
+	}
+
+	private static void print(int a) {
+		for (int i = 0; i < a; i++) {
+			System.out.print(array[i] + " ");
+		}
+		System.err.print(array[a] + " ");
+		for (int i = a + 1; i < array.length; i++) {
+			System.out.print(array[i] + " ");
+		}
 		System.out.println();
 	}
 }
