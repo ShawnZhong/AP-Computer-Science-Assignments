@@ -1,5 +1,7 @@
 package Day1;
 
+//TODO : Build a window
+
 public class LissajousCurve {
 	// This is our main method
 	// Our program starts here
