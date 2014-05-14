@@ -10,7 +10,7 @@ public class LissajousCurve extends MyFrameFast {
 	public static int width = 750;
 	public static int height = 750;
 
-	final int B_A = 5;
+	final int B_A = 1;
 
 	double a = 3;
 	double delta = 0.025;
