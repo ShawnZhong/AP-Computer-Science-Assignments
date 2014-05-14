@@ -11,10 +11,10 @@ import java.awt.Frame;
 public class MyFrame extends Frame {
 	public void launchFrame() {
 
-		// set the size of your frame
+		// set the size (in pixel) of your frame
 		setSize(500, 500);
 
-		// set the location of your frame
+		// set the location (in pixel) of your frame
 		setLocation(100, 100);
 
 		// set visible to true
