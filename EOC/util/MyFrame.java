@@ -1,4 +1,4 @@
-package curve;
+package util;
 
 import java.awt.Frame;
 import java.awt.Graphics;
@@ -7,8 +7,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class MyFrame extends Frame {
+	public static int width = 750;
+	public static int height = 750;
+
 	public void launchFrame() {
-		setSize(750, 750);
+		setSize(width, height);
 		setLocation(100, 100);
 		setVisible(true);
 
@@ -25,7 +28,7 @@ public class MyFrame extends Frame {
 
 	public void update(Graphics g) {
 		if (offScreenImage == null)
-			offScreenImage = this.createImage(750, 750);
+			offScreenImage = this.createImage(width, height);
 
 		Graphics gOff = offScreenImage.getGraphics();
 

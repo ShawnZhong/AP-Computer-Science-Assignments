@@ -2,8 +2,12 @@ package curve;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import util.MyFrame;
 
 public class LissajousCurve extends MyFrame {
+	public static int width = 750;
+	public static int height = 750;
+
 	double k = 2;
 	int number = 1000;
 

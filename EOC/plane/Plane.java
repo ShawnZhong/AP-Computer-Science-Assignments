@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import util.MyFrame;
 
 public class Plane {
 	private Image img;
@@ -34,11 +35,11 @@ public class Plane {
 	public void move() {
 		if (left && x > 0)
 			x -= speed;
-		if (right && x < MyFrame.GAME_HEIGHT - height)
+		if (right && x < MyFrame.height - height)
 			x += speed;
 		if (up && y > width / 2)
 			y -= speed;
-		if (down && y < MyFrame.GAME_WIDTH - width)
+		if (down && y < MyFrame.width - width)
 			y += speed;
 		rect = new Rectangle((int) x + height / 3, (int) y + width / 3, width / 3, height / 3);
 	}

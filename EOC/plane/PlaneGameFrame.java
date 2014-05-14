@@ -9,9 +9,10 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import util.MyFrame;
 
 public class PlaneGameFrame extends MyFrame {
-	final int BULLET_NUMBER = 20;
+	final int BULLET_NUMBER = 50;
 
 	Plane p = new Plane(getImage("plane/plane.png"), 50, 50, 10);
 	ArrayList<Bullet> bulletList = new ArrayList<Bullet>(BULLET_NUMBER);
@@ -22,7 +23,7 @@ public class PlaneGameFrame extends MyFrame {
 		if (p.isLive())
 			p.draw(g);
 		else
-			printInfo(g, "Time : " + period + "s", 20, 190, 270, Color.white);
+			printInfo(g, "Time : " + period + "s", 20, height / 2 - 50, width / 2, Color.white);
 
 		for (Bullet b : bulletList) {
 			b.draw(g);
