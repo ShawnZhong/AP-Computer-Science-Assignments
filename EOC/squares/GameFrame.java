@@ -1,7 +1,6 @@
-package snake;
+package squares;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -10,23 +9,18 @@ import util.MyFrameFast;
 
 public class GameFrame extends MyFrameFast {
 	Square a = new Square(Color.red, height / 2, width / 2, 25, 25);
-	Square b = new Square(Color.green, (int) (Math.random() * height), (int) (Math.random() * width), 25, 25);
-	int time;
+	Square b = new Square(Color.green, FrameUtil.random(50, height - 50), FrameUtil.random(50, width - 50), 25, 25);
+	int score;
 
 	public void paint(Graphics g) {
 		g.fillRect(0, 0, 750, 750);
 		a.draw(g);
 		b.draw(g);
 		if (a.getRect().intersects(b.getRect())) {
-			b = new Square(Color.green, FrameUtil.random(100, height - 100), FrameUtil.random(100, width - 100), 25, 25);
-			time++;
+			b = new Square(Color.green, FrameUtil.random(50, height - 50), FrameUtil.random(50, width - 50), 25, 25);
+			score++;
 		}
-	}
-
-	private void printInfo(Graphics g, String str, int size, int x, int y, Color color) {
-		g.setColor(color);
-		g.setFont(new Font("Microsoft YaHei", Font.BOLD, size));
-		g.drawString(str, x, y);
+		FrameUtil.printInfo(g, "Score : " + score, 25, 100, 100, Color.white);
 	}
 
 	public static void main(String[] args) {
