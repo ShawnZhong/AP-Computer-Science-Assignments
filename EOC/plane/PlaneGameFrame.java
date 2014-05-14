@@ -3,22 +3,22 @@ package plane;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import util.GameUtil;
-import util.MyFrame;
 
 public class PlaneGameFrame extends MyFrame {
 	final int BULLET_NUMBER = 35;
 
-	Plane p = new Plane("images/plane.png", 50, 50, 10);
+	Plane p = new Plane(getImage("images/plane.png"), 50, 50, 10);
 	ArrayList<Bullet> bulletList = new ArrayList<Bullet>(BULLET_NUMBER);
 	long start, period;
 
 	public void paint(Graphics g) {
-		g.drawImage(GameUtil.getImage("images/bg.jpg"), 0, 0, null);
+		g.drawImage(getImage("images/bg.jpg"), 0, 0, null);
 		if (p.isLive())
 			p.draw(g);
 		else
@@ -61,5 +61,14 @@ public class PlaneGameFrame extends MyFrame {
 		public void keyReleased(KeyEvent e) {
 			p.keyReleased(e);
 		}
+	}
+
+	public static Image getImage(String path) {
+		try {
+			return javax.imageio.ImageIO.read(PlaneGameFrame.class.getClassLoader().getResource(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

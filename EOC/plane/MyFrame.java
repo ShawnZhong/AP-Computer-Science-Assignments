@@ -1,4 +1,4 @@
-package util;
+package plane;
 
 import java.awt.Frame;
 import java.awt.Graphics;

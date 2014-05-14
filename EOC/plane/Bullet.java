@@ -3,7 +3,6 @@ package plane;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import util.MyFrame;
 
 public class Bullet {
 	private double x, y, degree;

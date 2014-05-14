@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import util.GameUtil;
-import util.MyFrame;
 
 public class Plane {
 	private Image img;
@@ -16,9 +14,9 @@ public class Plane {
 	private boolean left, up, right, down;
 	private boolean live = true;
 
-	public Plane(String imgpath, int x, int y, int speed) {
+	public Plane(Image img, int x, int y, int speed) {
 		this.speed = speed;
-		this.img = GameUtil.getImage(imgpath);
+		this.img = img;
 		this.width = img.getWidth(null);
 		this.height = img.getHeight(null);
 		this.x = x;
