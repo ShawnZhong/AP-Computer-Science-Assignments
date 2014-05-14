@@ -1,29 +1,27 @@
 package plane;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import util.FrameUtil;
 import util.MyFrame;
 
 public class GameFrame extends MyFrame {
 	final int BULLET_NUMBER = 50;
 
-	Plane p = new Plane(getImage("plane/plane.png"), 50, 50, 10);
+	Plane p = new Plane(FrameUtil.getImage("plane/plane.png"), 50, 50, 10);
 	ArrayList<Bullet> bulletList = new ArrayList<Bullet>(BULLET_NUMBER);
 	long start, period;
 
 	public void paint(Graphics g) {
-		g.drawImage(getImage("plane/bg.jpg"), 0, 0, null);
+		g.drawImage(FrameUtil.getImage("plane/bg.jpg"), 0, 0, null);
 		if (p.isLive())
 			p.draw(g);
 		else
-			printInfo(g, "Time : " + period + "s", 20, height / 2 - 50, width / 2, Color.white);
+			FrameUtil.printInfo(g, "Time : " + period + "s", 20, height / 2 - 50, width / 2, Color.white);
 
 		for (Bullet b : bulletList) {
 			b.draw(g);
@@ -32,12 +30,6 @@ public class GameFrame extends MyFrame {
 				period = (new Date().getTime() - start) / 1000;
 			}
 		}
-	}
-
-	public void printInfo(Graphics g, String str, int size, int x, int y, Color color) {
-		g.setColor(color);
-		g.setFont(new Font("Microsoft YaHei", Font.BOLD, size));
-		g.drawString(str, x, y);
 	}
 
 	public static void main(String[] args) {
@@ -64,12 +56,4 @@ public class GameFrame extends MyFrame {
 		}
 	}
 
-	public static Image getImage(String path) {
-		try {
-			return javax.imageio.ImageIO.read(GameFrame.class.getClassLoader().getResource(path));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 }

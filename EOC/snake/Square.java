@@ -11,7 +11,7 @@ public class Square {
 	private boolean left, up, right, down;
 	private Color color;
 
-	private final int SPEED = 15;
+	private final int SPEED = 10;
 
 	public Square(Color color, int x, int y, int height, int width) {
 		this.color = color;
