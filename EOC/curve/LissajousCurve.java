@@ -15,6 +15,18 @@ import java.text.Format;
 public class LissajousCurve extends Frame {
 	Format f = new DecimalFormat("0.000");
 	Image image = null;
+	Thread thread = new Thread() {
+		public void run() {
+			while (true) {
+				repaint();
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	};
 
 	double difference = 1;
 	double a = 1;
@@ -23,19 +35,6 @@ public class LissajousCurve extends Frame {
 
 	public static void main(String[] args) {
 		new LissajousCurve().launchFrame();
-	}
-
-	public void launchFrame() {
-		setSize(750, 750);
-		setLocation(100, 100);
-		setVisible(true);
-		new PaintThread().start();
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		addKeyListener(new KeyMonitor());
 	}
 
 	public void paint(Graphics g) {
@@ -62,57 +61,55 @@ public class LissajousCurve extends Frame {
 		g.drawImage(image, 0, 0, null);
 	}
 
-	class PaintThread extends Thread {
-		public void run() {
-			while (true) {
-				repaint();
-				try {
-					Thread.sleep(20);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+	public void launchFrame() {
+		setSize(750, 750);
+		setLocation(100, 100);
+		setVisible(true);
+		thread.start();
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_LEFT:
+					if (a > -10)
+						a -= 0.025;
+					break;
+				case KeyEvent.VK_UP:
+					if (difference < 10)
+						difference += 0.025;
+					break;
+				case KeyEvent.VK_RIGHT:
+					if (a < 10)
+						a += 0.025;
+					break;
+				case KeyEvent.VK_DOWN:
+					if (difference > -10)
+						difference -= 0.025;
+					break;
+				case KeyEvent.VK_W:
+					if (difference < 10)
+						difference = (int) (difference + 1);
+					break;
+				case KeyEvent.VK_S:
+					if (difference > -10)
+						difference = (int) (difference - 1);
+					break;
+				case KeyEvent.VK_A:
+					if (a > -10)
+						a = (int) (a - 1);
+					break;
+				case KeyEvent.VK_D:
+					if (a < 10)
+						a = (int) (a + 1);
+					break;
+				case KeyEvent.VK_SPACE:
+					auto = !auto;
 				}
 			}
-		}
-	}
-
-	class KeyMonitor extends KeyAdapter {
-		public void keyPressed(KeyEvent e) {
-			switch (e.getKeyCode()) {
-			case KeyEvent.VK_LEFT:
-				if (a > -10)
-					a -= 0.025;
-				break;
-			case KeyEvent.VK_UP:
-				if (difference < 10)
-					difference += 0.025;
-				break;
-			case KeyEvent.VK_RIGHT:
-				if (a < 10)
-					a += 0.025;
-				break;
-			case KeyEvent.VK_DOWN:
-				if (difference > -10)
-					difference -= 0.025;
-				break;
-			case KeyEvent.VK_W:
-				if (difference < 10)
-					difference = (int) (difference + 1);
-				break;
-			case KeyEvent.VK_S:
-				if (difference > -10)
-					difference = (int) (difference - 1);
-				break;
-			case KeyEvent.VK_A:
-				if (a > -10)
-					a = (int) (a - 1);
-				break;
-			case KeyEvent.VK_D:
-				if (a < 10)
-					a = (int) (a + 1);
-				break;
-			case KeyEvent.VK_SPACE:
-				auto = !auto;
-			}
-		}
+		});
 	}
 }
