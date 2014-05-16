@@ -2,7 +2,6 @@ package squares;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import util.MyFrame;
 
@@ -24,7 +23,6 @@ public class Square {
 	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
-		move();
 	}
 
 	public void move() {
@@ -72,8 +70,12 @@ public class Square {
 		}
 	}
 
-	public Rectangle getRect() {
-		return new Rectangle(x, y, width, height);
-	}
+	public boolean intersects(Square s) {
+		int tx = this.x;
+		int ty = this.y;
+		int rx = s.x;
+		int ry = s.y;
 
+		return ((width + rx > tx) && (height + ry > ty) && (width + tx > rx) && (height + ty > ry));
+	}
 }

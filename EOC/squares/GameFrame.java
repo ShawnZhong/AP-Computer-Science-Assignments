@@ -16,7 +16,8 @@ public class GameFrame extends MyFrameFast {
 		g.fillRect(0, 0, 750, 750);
 		a.draw(g);
 		b.draw(g);
-		if (a.getRect().intersects(b.getRect())) {
+		a.move();
+		if (a.intersects(b)) {
 			b = new Square(Color.green, FrameUtil.random(50, height - 50), FrameUtil.random(50, width - 50), 25, 25);
 			score++;
 		}
