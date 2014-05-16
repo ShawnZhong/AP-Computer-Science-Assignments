@@ -20,8 +20,11 @@ public class MyFrame extends Frame {
 
 	// paint method let you paint something on the window
 	public void paint(Graphics g) {
+		// g.setFont(new Font("Microsoft YaHei", Font.BOLD, 50));
+
 		// g.setColor(Color.blue);
 		// g.setColor(Color.green);
+		// g.setColor(Color.black);
 
 		// g.drawLine(x1, y1, x2, y2);
 		// g.drawString(str, x, y);
