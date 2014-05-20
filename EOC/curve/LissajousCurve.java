@@ -10,10 +10,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
-import java.text.Format;
 
 public class LissajousCurve extends Frame {
-	Format f = new DecimalFormat("0.000");
+	DecimalFormat f = new DecimalFormat("0.000");
+	Font font = new Font("Microsoft YaHei", Font.BOLD, 20);
 	Image image = null;
 	Thread thread = new Thread() {
 		public void run() {
@@ -24,6 +24,46 @@ public class LissajousCurve extends Frame {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+			}
+		}
+	};
+	KeyAdapter keyListener = new KeyAdapter() {
+		public void keyPressed(KeyEvent e) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_LEFT:
+				if (a > -10)
+					a -= 0.025;
+				break;
+			case KeyEvent.VK_UP:
+				if (difference < 10)
+					difference += 0.025;
+				break;
+			case KeyEvent.VK_RIGHT:
+				if (a < 10)
+					a += 0.025;
+				break;
+			case KeyEvent.VK_DOWN:
+				if (difference > -10)
+					difference -= 0.025;
+				break;
+			case KeyEvent.VK_W:
+				if (difference < 10)
+					difference = (int) (difference + 1);
+				break;
+			case KeyEvent.VK_S:
+				if (difference > -10)
+					difference = (int) (difference - 1);
+				break;
+			case KeyEvent.VK_A:
+				if (a > -10)
+					a = (int) (a - 1);
+				break;
+			case KeyEvent.VK_D:
+				if (a < 10)
+					a = (int) (a + 1);
+				break;
+			case KeyEvent.VK_SPACE:
+				auto = !auto;
 			}
 		}
 	};
@@ -40,7 +80,7 @@ public class LissajousCurve extends Frame {
 	public void paint(Graphics g) {
 		g.fillRect(0, 0, 750, 750);
 		g.setColor(Color.red);
-		for (double i = 0; i <= 2 * Math.PI; i += 1 / 1000.0)
+		for (double i = 0; i <= 2 * Math.PI; i += 0.0001)
 			g.fillOval((int) (300 * Math.sin(a * i)) + 375, (int) (300 * Math.cos((a + difference) * i)) + 375, 7, 7);
 
 		if (auto) {
@@ -50,7 +90,7 @@ public class LissajousCurve extends Frame {
 		}
 
 		g.setColor(Color.white);
-		g.setFont(new Font("Microsoft YaHei", Font.BOLD, 20));
+		g.setFont(font);
 		g.drawString("a = " + f.format(a) + "      b = " + f.format(a + difference) + "      b - a = " + f.format(difference), 75, 60);
 	}
 
@@ -71,45 +111,6 @@ public class LissajousCurve extends Frame {
 				System.exit(0);
 			}
 		});
-		addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				switch (e.getKeyCode()) {
-				case KeyEvent.VK_LEFT:
-					if (a > -10)
-						a -= 0.025;
-					break;
-				case KeyEvent.VK_UP:
-					if (difference < 10)
-						difference += 0.025;
-					break;
-				case KeyEvent.VK_RIGHT:
-					if (a < 10)
-						a += 0.025;
-					break;
-				case KeyEvent.VK_DOWN:
-					if (difference > -10)
-						difference -= 0.025;
-					break;
-				case KeyEvent.VK_W:
-					if (difference < 10)
-						difference = (int) (difference + 1);
-					break;
-				case KeyEvent.VK_S:
-					if (difference > -10)
-						difference = (int) (difference - 1);
-					break;
-				case KeyEvent.VK_A:
-					if (a > -10)
-						a = (int) (a - 1);
-					break;
-				case KeyEvent.VK_D:
-					if (a < 10)
-						a = (int) (a + 1);
-					break;
-				case KeyEvent.VK_SPACE:
-					auto = !auto;
-				}
-			}
-		});
+		addKeyListener(keyListener);
 	}
 }
