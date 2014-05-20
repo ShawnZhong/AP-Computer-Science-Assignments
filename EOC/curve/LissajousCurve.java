@@ -10,11 +10,54 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
+import java.text.Format;
 
 public class LissajousCurve extends Frame {
-	DecimalFormat f = new DecimalFormat("0.000");
-	Font font = new Font("Microsoft YaHei", Font.BOLD, 20);
+	Format f = new DecimalFormat("0.000");
 	Image image = null;
+
+	double difference = 1;
+	double a = 1;
+	double delta = 0.025;
+	boolean auto;
+
+	public static void main(String[] args) {
+		new LissajousCurve().launchFrame();
+	}
+
+	public void launchFrame() {
+		setSize(750, 750);
+		setLocation(100, 100);
+		setVisible(true);
+		thread.start();
+		addWindowListener(windowClosing);
+		addKeyListener(keyListener);
+	}
+
+	public void paint(Graphics g) {
+		g.fillRect(0, 0, 750, 750);
+		g.setColor(Color.red);
+		for (double i = 0; i <= 2 * Math.PI; i += 1 / 1000.0)
+			g.fillOval((int) (300 * Math.sin(a * i)) + 375, (int) (300 * Math.cos((a + difference) * i)) + 375, 7, 7);
+
+		if (auto) {
+			a += delta;
+			if (a > 10 || a < -10)
+				delta = -delta;
+		}
+
+		g.setColor(Color.white);
+		g.setFont(new Font("Microsoft YaHei", Font.BOLD, 20));
+		g.drawString("a = " + f.format(a) + "      b = " + f.format(a + difference) + "      b - a = " + f.format(difference), 75, 60);
+	}
+
+	public void update(Graphics g) {
+		if (image == null)
+			image = this.createImage(750, 750);
+		paint(image.getGraphics());
+		g.drawImage(image, 0, 0, null);
+	}
+
 	Thread thread = new Thread() {
 		public void run() {
 			while (true) {
@@ -25,6 +68,11 @@ public class LissajousCurve extends Frame {
 					e.printStackTrace();
 				}
 			}
+		}
+	};
+	WindowAdapter windowClosing = new WindowAdapter() {
+		public void windowClosing(WindowEvent e) {
+			System.exit(0);
 		}
 	};
 	KeyAdapter keyListener = new KeyAdapter() {
@@ -68,49 +116,4 @@ public class LissajousCurve extends Frame {
 		}
 	};
 
-	double difference = 1;
-	double a = 1;
-	double delta = 0.025;
-	boolean auto;
-
-	public static void main(String[] args) {
-		new LissajousCurve().launchFrame();
-	}
-
-	public void paint(Graphics g) {
-		g.fillRect(0, 0, 750, 750);
-		g.setColor(Color.red);
-		for (double i = 0; i <= 2 * Math.PI; i += 0.0001)
-			g.fillOval((int) (300 * Math.sin(a * i)) + 375, (int) (300 * Math.cos((a + difference) * i)) + 375, 7, 7);
-
-		if (auto) {
-			a += delta;
-			if (a > 10 || a < -10)
-				delta = -delta;
-		}
-
-		g.setColor(Color.white);
-		g.setFont(font);
-		g.drawString("a = " + f.format(a) + "      b = " + f.format(a + difference) + "      b - a = " + f.format(difference), 75, 60);
-	}
-
-	public void update(Graphics g) {
-		if (image == null)
-			image = this.createImage(750, 750);
-		paint(image.getGraphics());
-		g.drawImage(image, 0, 0, null);
-	}
-
-	public void launchFrame() {
-		setSize(750, 750);
-		setLocation(100, 100);
-		setVisible(true);
-		thread.start();
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		addKeyListener(keyListener);
-	}
 }
