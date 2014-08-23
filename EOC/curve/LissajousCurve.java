@@ -38,7 +38,8 @@ public class LissajousCurve extends Frame {
 		g.fillRect(0, 0, 750, 750);
 		g.setColor(Color.red);
 		for (double i = 0; i <= 2 * Math.PI; i += 1 / 1000.0)
-			g.fillOval((int) (300 * Math.sin(a * i)) + 375, (int) (300 * Math.cos((a + d) * i)) + 375, 7, 7);
+			g.fillOval((int) (300 * Math.sin(a * i)) + 375,
+					(int) (300 * Math.cos((a + d) * i)) + 375, 5, 5);
 
 		if (auto) {
 			a += delta;
@@ -48,7 +49,8 @@ public class LissajousCurve extends Frame {
 
 		g.setColor(Color.white);
 		g.setFont(new Font("Microsoft YaHei", Font.BOLD, 20));
-		g.drawString("a = " + f.format(a) + "      b = " + f.format(a + d) + "      b - a = " + f.format(d), 75, 60);
+		g.drawString("a = " + f.format(a) + "      b = " + f.format(a + d)
+				+ "      b - a = " + f.format(d), 75, 60);
 
 		g.setFont(new Font("Microsoft YaHei", Font.BOLD, 10));
 		g.drawString("Up :       d+=.025", 10, 590);

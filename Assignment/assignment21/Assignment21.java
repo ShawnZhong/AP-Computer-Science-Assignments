@@ -3,7 +3,7 @@ package assignment21;
 public class Assignment21 {
 	public static void main(String[] args) {
 		// number of rows
-		final int NUM = 12;
+		final int NUM = 10;
 
 		// initialize the array
 		int[][] a = new int[NUM][];

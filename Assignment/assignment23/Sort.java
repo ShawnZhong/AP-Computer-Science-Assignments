@@ -4,7 +4,7 @@ public class Sort {
 	static int[] array = { 1, 2, 4, 5, 6, 7, 3, 2, 3, 5, 7, 1 };
 
 	public static void main(String[] args) {
-		// selectionSort();
+		selectionSort();
 		// bubbleSort();
 	}
 
