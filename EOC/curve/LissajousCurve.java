@@ -18,7 +18,7 @@ public class LissajousCurve extends Frame {
 
 	double d = 1;
 	double a = 1;
-	double delta = 0.025;
+	double delta = 0.05;
 	boolean auto;
 
 	public static void main(String[] args) {
